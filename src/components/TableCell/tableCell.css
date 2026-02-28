@@ -1,0 +1,11 @@
+.shimmer {
+    background: linear-gradient(90deg, transparent 15%, var(--color-teal-950) 85%, transparent 100%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite linear;
+    transition: all 0.2s ease-in-out;
+}
+
+@keyframes shimmer {
+    0% { background-position: 200% center }
+    100% { background-position: -200% center }
+}

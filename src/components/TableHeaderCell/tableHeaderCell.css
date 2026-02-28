@@ -1,0 +1,56 @@
+.sortBtnIcon, .filterBtn {
+    transition: transform 0.1s ease;
+}
+
+.sortBtn {
+    transform: rotateZ(0deg);
+    transition: transform 0.1s ease;
+}
+
+.sortBtn:hover {
+    transform: rotateZ(-5deg);
+}
+
+.sortBtn:active {
+    transform: rotateZ(365deg);
+}
+
+.sortBtn--asc {
+    .sortBtnIcon {
+        transform-origin: left center;
+    }
+
+    .sortBtnIcon:first-child {
+        transform: scaleX(0.5);
+    }
+
+    .sortBtnIcon:nth-child(2) {
+        transform: scaleX(0.75);
+    }
+}
+
+.sortBtn--desc {
+    .sortBtnIcon {
+        transform-origin: left center;
+    }
+
+    .sortBtnIcon:last-child {
+        transform: scaleX(0.5);
+    }
+
+    .sortBtnIcon:nth-child(2) {
+        transform: scaleX(0.75);
+    }
+}
+
+.filterBtn:hover {
+    transform: rotateZ(-5deg);
+}
+
+.filterBtn--active {
+    transform: rotateZ(180deg);
+}
+
+.filterBtn--active:hover {
+    transform: rotateZ(185deg);
+}
