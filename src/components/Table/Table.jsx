@@ -2,6 +2,8 @@ import { useState, useReducer } from 'react';
 
 import TableHeader from '../TableHeader.jsx';
 import TableRow from '../TableRow.jsx';
+import Pagination from '../Pagination.jsx';
+
 import useUsers from '../../hooks/useUsers.js';
 
 import { COLUMNS_DEF, CLICKABLE_COLS } from './constants.js';
@@ -47,6 +49,8 @@ const Table = () => {
     })),
   }));
 
+  const MAX_PAGES = Math.ceil(total / PAGE_LIMIT);
+
   const handleSort = (colKey) => {
     dispatch(colKey);
   };
@@ -55,31 +59,59 @@ const Table = () => {
     dispatchFilter(colKey);
   };
 
+  const handlePrevPage = () => {
+    setPage((prev) => {
+      if (prev > 1) {
+        return prev - 1;
+      }
+
+      return prev;
+    });
+  };
+
+  const handleNextPage = () => {
+    setPage((prev) => {
+      if (prev < MAX_PAGES) {
+        return prev + 1;
+      }
+
+      return prev;
+    });
+  };
+
   return (
-    <table
-      className={`w-full max-w-[1400px] table-fixed border-separate border-spacing-0 rounded-lg border-4 border-green-800`}
-      style={{ boxShadow: `0 0 13px ${SHADOW_COLOR}` }}
-    >
-      <TableHeader
-        columns={COLUMNS_DEF}
-        clickableColumns={CLICKABLE_COLS}
-        sortState={sortState}
-        onSort={handleSort}
-        filterState={filterState}
-        onFilter={handleFilter}
+    <div className="flex flex-col items-end">
+      <table
+        className={`w-full max-w-[1400px] table-fixed border-separate border-spacing-0 rounded-lg rounded-br-none border-4 border-green-800`}
+        style={{ boxShadow: `0 0 13px ${SHADOW_COLOR}` }}
+      >
+        <TableHeader
+          columns={COLUMNS_DEF}
+          clickableColumns={CLICKABLE_COLS}
+          sortState={sortState}
+          onSort={handleSort}
+          filterState={filterState}
+          onFilter={handleFilter}
+        />
+        <tbody>
+          {rows.map((row) => (
+            <TableRow
+              key={row.user.id}
+              columns={row.columns}
+              user={row.user}
+              isLoading={isLoading}
+              onClick={() => console.log('user profile opens')}
+            />
+          ))}
+        </tbody>
+      </table>
+      <Pagination
+        handlePrevPage={handlePrevPage}
+        handleNextPage={handleNextPage}
+        page={page}
+        maxPages={MAX_PAGES}
       />
-      <tbody>
-        {rows.map((row) => (
-          <TableRow
-            key={row.user.id}
-            columns={row.columns}
-            user={row.user}
-            isLoading={isLoading}
-            onClick={() => console.log('user profile opens')}
-          />
-        ))}
-      </tbody>
-    </table>
+    </div>
   );
 };
 
