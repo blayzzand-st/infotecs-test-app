@@ -24,3 +24,6 @@
 - Обработка ошибок
 - Адаптация под мобильные устройства
 - Отображение модального окна
+
+### Try it yourself
+[Ссылка на демо](https://blayzzand-st.github.io/infotecs-test-app/)
