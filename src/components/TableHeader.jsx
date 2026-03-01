@@ -1,4 +1,5 @@
 import TableHeaderCell from './TableHeaderCell/TableHeaderCell.jsx';
+import { FILTER_ACTIONS } from '../utils/filterUtils.js';
 
 const TableHeader = ({
   columns,
@@ -25,7 +26,19 @@ const TableHeader = ({
               onSort(col.key);
             }}
             handleFilter={() => {
-              onFilter(col.key);
+              onFilter({ type: FILTER_ACTIONS.TOGGLE, colKey: col.key });
+            }}
+            onFilterClose={() => {
+              onFilter({ type: FILTER_ACTIONS.CLOSE });
+            }}
+            onFilterSubmit={(value) => {
+              if (value.trim()) {
+                onFilter({
+                  type: FILTER_ACTIONS.SUBMIT,
+                  colKey: col.key,
+                  value,
+                });
+              }
             }}
           />
         ))}
