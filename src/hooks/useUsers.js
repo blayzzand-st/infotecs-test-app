@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 
 const BASE_URL = 'https://dummyjson.com/users';
 
-const UseUsers = ({
+const useUsers = ({
   page = 1,
   limit = 15,
   sortBy = null,
@@ -77,4 +77,4 @@ const UseUsers = ({
   };
 };
 
-export default UseUsers;
+export default useUsers;

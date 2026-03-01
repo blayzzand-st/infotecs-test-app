@@ -28,7 +28,7 @@ const Table = () => {
     sortState.direction === SORT_STATES.DEFAULT ? null : sortState.activeKey;
   const order =
     sortState.direction === SORT_STATES.DEFAULT ? 'asc' : sortState.direction;
-  const filterKey = filterState.activeKey;
+  const filterKey = filterState.value ? filterState.activeKey : null;
   const filterValue = filterState.value;
 
   const { users, error, isLoading, total } = useUsers({
