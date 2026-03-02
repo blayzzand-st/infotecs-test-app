@@ -9,7 +9,7 @@ const TableRow = ({ columns, user, isLoading, onClick }) => {
       {columns.map((col, idx) => (
         <TableCell
           key={col.key}
-          content={col.content}
+          content={col.content ?? '\u00A0'}
           isLast={idx === columns.length - 1}
           isLoading={isLoading}
         />

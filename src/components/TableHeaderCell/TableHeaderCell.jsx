@@ -36,7 +36,7 @@ const TableHeaderCell = ({
 
       {!isLast && (
         <div
-          className="absolute inset-y-0 left-full z-1 flex w-1 cursor-col-resize outline outline-amber-600"
+          className="absolute inset-y-0 left-full z-1 flex w-1 cursor-col-resize outline-1 outline-lime-600"
           onMouseDown={(e) => onResize(col.key, e)}
         ></div>
       )}

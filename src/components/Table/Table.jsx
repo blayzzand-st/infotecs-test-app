@@ -94,15 +94,19 @@ const Table = () => {
           onFilter={handleFilter}
         />
         <tbody>
-          {rows.map((row) => (
-            <TableRow
-              key={row.user.id}
-              columns={row.columns}
-              user={row.user}
-              isLoading={isLoading}
-              onClick={() => console.log('user profile opens')}
-            />
-          ))}
+          {rows.length === 0
+            ? [...Array(PAGE_LIMIT)].map((_, idx) => (
+                <TableRow key={idx} columns={COLUMNS_DEF} isLoading={true} />
+              ))
+            : rows.map((row) => (
+                <TableRow
+                  key={row.user.id}
+                  columns={row.columns}
+                  user={row.user}
+                  isLoading={isLoading}
+                  onClick={() => console.log('user profile opens')}
+                />
+              ))}
         </tbody>
       </table>
       <Pagination
