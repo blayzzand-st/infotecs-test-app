@@ -1,4 +1,6 @@
 import TableHeaderCell from './TableHeaderCell/TableHeaderCell.jsx';
+
+import useColumnResize from '../hooks/useColumnResize.js';
 import { FILTER_ACTIONS } from '../utils/filterUtils.js';
 
 const TableHeader = ({
@@ -9,6 +11,8 @@ const TableHeader = ({
   filterState,
   onFilter,
 }) => {
+  const { columnWidths, startResize } = useColumnResize(columns.length, 50);
+
   return (
     <thead>
       <tr>
@@ -40,6 +44,8 @@ const TableHeader = ({
                 });
               }
             }}
+            onResize={startResize}
+            colWidths={columnWidths}
           />
         ))}
       </tr>

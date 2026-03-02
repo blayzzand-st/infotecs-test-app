@@ -17,15 +17,28 @@ const TableHeaderCell = ({
   handleFilter,
   onFilterSubmit,
   onFilterClose,
+  onResize,
+  colWidths,
 }) => {
   const sortState = isActive ? direction : SORT_STATES.DEFAULT;
+  const thStyle = colWidths[col.key]
+    ? { width: `${colWidths[col.key]}px` }
+    : {};
 
   return (
     <th
       className={`${isLast ? '' : 'border-r-4'} relative border-b-4 border-green-800 ${isActive ? 'bg-green-900' : 'bg-green-950'} px-3 py-2 transition-colors duration-100`}
+      style={thStyle}
     >
       {isFilterActive && (
         <FilterPopup onSubmit={onFilterSubmit} onClose={onFilterClose} />
+      )}
+
+      {!isLast && (
+        <div
+          className="absolute inset-y-0 left-full z-1 flex w-1 cursor-col-resize outline outline-amber-600"
+          onMouseDown={(e) => onResize(col.key, e)}
+        ></div>
       )}
 
       <div className="flex items-center justify-around gap-x-3">
